@@ -1,0 +1,54 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Health Logger",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/log": {
+      "post": {
+        "summary": "Log health data to Google Sheet",
+        "operationId": "logHealthData",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "date": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "Дата в формате YYYY-MM-DD"
+                  },
+                  "category": {
+                    "type": "string",
+                    "description": "Категория (например, Сон, Стул, Питание)"
+                  },
+                  "subcategory": {
+                    "type": "string",
+                    "description": "Подкатегория (например, Качество, Завтрак)"
+                  },
+                  "value": {
+                    "type": "string",
+                    "description": "Данные по логируемому элементу"
+                  },
+                  "tags": {
+                    "type": "string",
+                    "description": "Дополнительные маркеры или заметки"
+                  }
+                },
+                "required": ["date", "category", "subcategory", "value"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully logged"
+          }
+        }
+      }
+    }
+  }
+}
